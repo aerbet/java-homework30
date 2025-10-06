@@ -39,6 +39,26 @@ public class RestaurantOrders {
     //------   Реализация ваших методов должна быть ниже этой линии   ------
     //----------------------------------------------------------------------
 
+    public List<Order> getHomeDeliveryMinMax() {
+        var min = getHomeDeliveryOrders()
+                .stream()
+                .min(Comparator.comparingDouble(Order::calculateTotal))
+                .get();
+        var max = getHomeDeliveryOrders()
+                .stream()
+                .min(Comparator.comparingDouble(Order::calculateTotal).reversed())
+                .get();
+
+        return List.of(min, max);
+    }
+
+    public List<Order> getHomeDeliveryOrders() {
+        return orders
+                .stream()
+                .filter(Order::isHomeDelivery)
+                .toList();
+    }
+
     public List<Order> getOrdersMin(int n) {
         return orders
                 .stream()

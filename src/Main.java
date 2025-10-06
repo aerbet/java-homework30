@@ -11,11 +11,13 @@ public class Main {
 
 //        restaurantOrders.printAllOrders();
 
-        System.out.println(restaurantOrders.getOrdersMin(3));
+//        System.out.println(restaurantOrders.getOrdersMin(3));
 
-        System.out.println(restaurantOrders.getOrdersMax(3));
+//        System.out.println(restaurantOrders.getOrdersMax(3));
 
+//        System.out.println(restaurantOrders.getHomeDeliveryOrders());
 
+        System.out.println(restaurantOrders.getHomeDeliveryMinMax());
 
 
         //var orders = RestaurantOrders.read("orders_1000.json").getOrders();
