@@ -1,8 +1,8 @@
 package homework;
 
 import com.google.gson.Gson;
+import homework.domain.Customer;
 import homework.domain.Order;
-
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -39,6 +39,29 @@ public class RestaurantOrders {
     //------   Реализация ваших методов должна быть ниже этой линии   ------
     //----------------------------------------------------------------------
 
+    public List<String> getUniqueEmails() {
+        return orders.stream()
+                .map(order -> order.getCustomer().getEmail())
+                .distinct()
+                .toList();
+    }
+
+    public double getTotalSum() {
+        return orders
+                .stream()
+                .mapToDouble(Order::calculateTotal)
+                .sum();
+    }
+
+    public List<Order> getFilteredTotal(double minOrderTotal, double maxOrderTotal) {
+        return orders
+                .stream()
+                .filter(order -> {
+                    double total = order.calculateTotal();
+                    return total > minOrderTotal && total < maxOrderTotal;
+                }).toList();
+    }
+
     public List<Order> getHomeDeliveryMinMax() {
         var min = getHomeDeliveryOrders()
                 .stream()
@@ -46,7 +69,7 @@ public class RestaurantOrders {
                 .get();
         var max = getHomeDeliveryOrders()
                 .stream()
-                .min(Comparator.comparingDouble(Order::calculateTotal).reversed())
+                .max(Comparator.comparingDouble(Order::calculateTotal))
                 .get();
 
         return List.of(min, max);
