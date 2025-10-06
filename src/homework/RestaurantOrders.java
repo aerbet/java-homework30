@@ -7,6 +7,7 @@ import homework.domain.Order;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.List;
 
 public class RestaurantOrders {
@@ -38,9 +39,23 @@ public class RestaurantOrders {
     //------   Реализация ваших методов должна быть ниже этой линии   ------
     //----------------------------------------------------------------------
 
-    // Наполните этот класс решением домашнего задания.
-    // Вам необходимо создать все необходимые методы
-    // для решения заданий из домашки :)
-    // вы можете добавлять все необходимые imports
-    //
+    public List<Order> getOrdersMin(int n) {
+        return orders
+                .stream()
+                .sorted(Comparator.comparingDouble(Order::calculateTotal))
+                .limit(n)
+                .toList();
+    }
+
+    public List<Order> getOrdersMax(int n) {
+        return orders
+                .stream()
+                .sorted(Comparator.comparingDouble(Order::calculateTotal).reversed())
+                .limit(n)
+                .toList();
+    }
+
+    public void printAllOrders() {
+        orders.forEach(order -> System.out.println(order.toString()));
+    }
 }

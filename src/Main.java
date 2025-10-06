@@ -1,14 +1,21 @@
 import homework.RestaurantOrders;
 import homework.domain.Order;
 
+import java.util.Comparator;
 import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) {
-        var orders = RestaurantOrders.read("orders_100.json").getOrders();
+        RestaurantOrders restaurantOrders = RestaurantOrders.read("orders_100.json");
 
-        orders.forEach(Order::printOrder);
+//        restaurantOrders.printAllOrders();
+
+        System.out.println(restaurantOrders.getOrdersMin(3));
+
+        System.out.println(restaurantOrders.getOrdersMax(3));
+
+
 
 
         //var orders = RestaurantOrders.read("orders_1000.json").getOrders();

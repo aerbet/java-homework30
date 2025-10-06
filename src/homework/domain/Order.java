@@ -1,5 +1,6 @@
 package homework.domain;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
@@ -56,16 +57,17 @@ public class Order {
     public Double calculateTotal() {
         return items
                 .stream()
-                .mapToDouble(Item::getPrice)
+                .mapToDouble(item -> item.getPrice() * item.getAmount())
                 .sum();
     }
 
-    public void printOrder() {
-        System.out.print("\n===================================================================" +
+    @Override
+    public String toString() {
+        return "\n===================================================================" +
                 "\nOrder:" +
                 "\ncustomer = " + customer +
                 "\nitems = " + items +
                 "\nhomeDelivery = " + homeDelivery +
-                "\ntotal = " + calculateTotal());
+                "\ntotal = " + calculateTotal();
     }
 }
