@@ -60,12 +60,12 @@ public class Order {
                 .sum();
     }
 
-    @Override
-    public String toString() {
-        return "\nOrder:" +
+    public void printOrder() {
+        System.out.print("\n===================================================================" +
+                "\nOrder:" +
                 "\ncustomer = " + customer +
                 "\nitems = " + items +
                 "\nhomeDelivery = " + homeDelivery +
-                "\ntotal = " + calculateTotal();
+                "\ntotal = " + calculateTotal());
     }
 }

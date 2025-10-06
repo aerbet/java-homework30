@@ -1,19 +1,14 @@
 import homework.RestaurantOrders;
 import homework.domain.Order;
 
+import java.util.List;
+
 public class Main {
 
     public static void main(String[] args) {
         var orders = RestaurantOrders.read("orders_100.json").getOrders();
 
-        orders.forEach(System.out::println);
-
-        var filtered = orders
-                .stream()
-                .map(Order::calculateTotal)
-                .toList();
-
-        filtered.forEach(System.out::println);
+        orders.forEach(Order::printOrder);
 
 
         //var orders = RestaurantOrders.read("orders_1000.json").getOrders();

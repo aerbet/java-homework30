@@ -61,9 +61,9 @@ public class Item {
 
     @Override
     public String toString() {
-        return  "\nname='" + name + '\'' +
-                ", price=" + price +
-                ", type='" + type + '\'' +
-                ", amount=" + amount;
+        return  "\nname = '" + name + '\'' +
+                ", price = " + price +
+                ", type = '" + type + '\'' +
+                ", amount = " + amount;
     }
 }

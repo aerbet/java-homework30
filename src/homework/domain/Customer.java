@@ -43,6 +43,6 @@ public class Customer {
     @Override
     public String toString() {
         return fullName +
-                ", email = " + email + '\'';
+                ", email = " + email;
     }
 }
