@@ -53,7 +53,19 @@ public class Order {
     //------   Реализация ваших методов должна быть ниже этой линии   ------
     //----------------------------------------------------------------------
 
-    public void calculateTotal() {
-        throw new NotImplementedException("Вам надо реализовать этот метод!");
+    public Double calculateTotal() {
+        return items
+                .stream()
+                .mapToDouble(Item::getPrice)
+                .sum();
+    }
+
+    @Override
+    public String toString() {
+        return "\nOrder:" +
+                "\ncustomer = " + customer +
+                "\nitems = " + items +
+                "\nhomeDelivery = " + homeDelivery +
+                "\ntotal = " + calculateTotal();
     }
 }
