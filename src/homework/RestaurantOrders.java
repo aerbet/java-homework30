@@ -2,6 +2,7 @@ package homework;
 
 import com.google.gson.Gson;
 import homework.domain.Customer;
+import homework.domain.Item;
 import homework.domain.Order;
 
 import java.io.IOException;
@@ -9,6 +10,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
+
+import static java.util.stream.Collectors.*;
 
 public class RestaurantOrders {
     // Этот блок кода менять нельзя! НАЧАЛО!
@@ -38,6 +42,44 @@ public class RestaurantOrders {
     //----------------------------------------------------------------------
     //------   Реализация ваших методов должна быть ниже этой линии   ------
     //----------------------------------------------------------------------
+
+    public Map<String, Integer> getSelledItemsTotal() {
+        return orders
+                .stream()
+                .flatMap(order -> order.getItems().stream())
+                .collect(groupingBy(Item::getName, summingInt(Item::getAmount)));
+    }
+
+    public String getMinSumClient() {
+        return getSumOfClient()
+                .entrySet()
+                .stream()
+                .min(Map.Entry.comparingByValue())
+                .get()
+                .getKey();
+    }
+
+    public String getMaxSumClient() {
+        return getSumOfClient()
+                .entrySet()
+                .stream()
+                .max(Map.Entry.comparingByValue())
+                .get()
+                .getKey();
+    }
+
+    public Map<String, Double> getSumOfClient() {
+        return orders
+                .stream()
+                .collect(groupingBy(order -> order.getCustomer().getFullName(),
+                        summingDouble(Order::calculateTotal)));
+    }
+
+    public Map<String, List<Order>> getUniqueClient() {
+        return orders
+                .stream()
+                .collect(groupingBy(order -> order.getCustomer().getFullName()));
+    }
 
     public List<String> getUniqueEmails() {
         return orders.stream()

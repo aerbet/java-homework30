@@ -1,10 +1,7 @@
 package homework.domain;
 
-import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
-
-import homework.util.NotImplementedException;
 
 public class Order {
     // Этот блок кода менять нельзя! НАЧАЛО!
@@ -63,11 +60,12 @@ public class Order {
 
     @Override
     public String toString() {
-        return "\n===================================================================" +
+        return
                 "\nOrder:" +
                 "\ncustomer = " + customer +
                 "\nitems = " + items +
                 "\nhomeDelivery = " + homeDelivery +
-                "\ntotal = " + calculateTotal();
+                "\ntotal = " + calculateTotal() +
+        "\n===================================================================";
     }
 }
